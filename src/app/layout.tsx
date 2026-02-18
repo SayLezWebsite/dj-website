@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LEZ",
+  title: "Say Lez",
   description: "Say Lez — DJ/Producer",
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <Link href="/" className="font-[var(--font-bebas)] text-3xl tracking-widest">
-              LEZ
+              SAY LEZ
             </Link>
             <div className="flex gap-4 text-sm font-[var(--font-inter)] text-white/90">
               <Link href="/">Home</Link>
