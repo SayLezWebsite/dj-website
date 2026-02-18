@@ -5,7 +5,7 @@ export default function Home() {
     <section className="relative min-h-[calc(100vh-64px)] overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-35"
-        style={{ backgroundImage: "url('/photos/closecall-14.jpg')" }}
+        style={{ backgroundImage: "url('/photos/home-main.jpg')" }}
       />
       <div className="absolute inset-0 bg-black/60" />
 
