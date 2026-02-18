@@ -38,6 +38,7 @@ export default function RootLayout({
               <Link href="/music">Music</Link>
               <Link href="/videos">Videos</Link>
               <Link href="/social">Social</Link>
+              <Link href="/presskit">Presskit</Link>
               <Link href="/contact">Contact</Link>
             </div>
           </nav>
