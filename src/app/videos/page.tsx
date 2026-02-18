@@ -40,7 +40,7 @@ export default async function VideosPage() {
     <section className="mx-auto max-w-6xl px-6 py-16">
       <h1 className="font-[var(--font-bebas)] text-6xl tracking-wider">Videos & Photos</h1>
       <p className="mt-3 font-[var(--font-inter)] text-white/70">
-        Live moments, sets, and crowd energy.
+        Visual-only mode enabled for videos (muted loops).
       </p>
 
       <div className="mt-10">
@@ -49,7 +49,15 @@ export default async function VideosPage() {
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {videos.map((src) => (
               <div key={src} className="overflow-hidden border border-white/15 bg-black">
-                <video controls playsInline preload="metadata" className="h-full w-full" src={src} />
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="h-full w-full"
+                  src={src}
+                />
               </div>
             ))}
           </div>

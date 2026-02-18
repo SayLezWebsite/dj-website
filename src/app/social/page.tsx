@@ -6,27 +6,19 @@ export default function SocialPage() {
       <div className="mt-8 space-y-4 font-[var(--font-inter)]">
         <a
           className="block border border-white/20 p-4 hover:border-white"
-          href="https://www.instagram.com/itsaclosecall/"
+          href="https://www.instagram.com/say.lez_/"
           target="_blank"
           rel="noreferrer"
         >
-          Instagram
+          Instagram — @say.lez_
         </a>
         <a
           className="block border border-white/20 p-4 hover:border-white"
-          href="https://www.tiktok.com/"
+          href="https://www.tiktok.com/@saylez__?lang=en"
           target="_blank"
           rel="noreferrer"
         >
-          TikTok
-        </a>
-        <a
-          className="block border border-white/20 p-4 hover:border-white"
-          href="https://www.youtube.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          YouTube
+          TikTok — @saylez__
         </a>
       </div>
     </section>

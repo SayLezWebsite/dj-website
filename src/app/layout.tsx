@@ -34,6 +34,7 @@ export default function RootLayout({
             </Link>
             <div className="flex gap-4 text-sm font-[var(--font-inter)] text-white/90">
               <Link href="/">Home</Link>
+              <Link href="/shows">Shows</Link>
               <Link href="/music">Music</Link>
               <Link href="/videos">Videos</Link>
               <Link href="/social">Social</Link>

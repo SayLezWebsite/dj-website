@@ -1,15 +1,13 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <section className="relative min-h-[calc(100vh-64px)] overflow-hidden">
-      <video
-        className="absolute inset-0 h-full w-full object-cover opacity-35"
-        src="/hero.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-35"
+        style={{ backgroundImage: "url('/photos/closecall-14.jpg')" }}
       />
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-black/60" />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl flex-col justify-end px-6 pb-14">
         <h1 className="font-[var(--font-bebas)] text-7xl tracking-widest md:text-9xl">SAY LEZ</h1>
@@ -18,6 +16,23 @@ export default function Home() {
           R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
           always rooted in feeling.
         </p>
+
+        <div className="mt-8 max-w-xl border border-white/20 bg-black/40 p-4 font-[var(--font-inter)]">
+          <p className="text-xs uppercase tracking-widest text-white/65">Next showdate</p>
+          <p className="mt-1 text-lg text-white">CloseCall — Skatecafe — 27 February</p>
+          <Link href="/shows" className="mt-3 inline-block underline text-white/90">
+            View all dates
+          </Link>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-4 font-[var(--font-inter)] text-sm text-white/90">
+          <a href="https://www.instagram.com/say.lez_/" target="_blank" rel="noreferrer" className="underline">
+            Instagram
+          </a>
+          <a href="https://www.tiktok.com/@saylez__?lang=en" target="_blank" rel="noreferrer" className="underline">
+            TikTok
+          </a>
+        </div>
       </div>
     </section>
   );
