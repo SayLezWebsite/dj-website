@@ -15,20 +15,20 @@ const socials = [
     url: "https://www.tiktok.com/@saylez__?lang=en",
     note: "Short edits, crowd moments, previews",
   },
+  {
+    name: "YouTube",
+    handle: "@saylezzzz",
+    url: "https://www.youtube.com/@saylezzzz",
+    note: "Longer sets, edits, and uploads",
+  },
 ];
+
+const youtubeUploadsPlaylistId = "UUvdodF39BFDMyfrGxpKHMbw";
 
 // Paste direct post/reel links here for latest embeds-style cards.
-const latestInstagramPosts = [
-  "",
-  "",
-  "",
-];
+const latestInstagramPosts = ["", "", ""];
 
-const latestTikTokPosts = [
-  "",
-  "",
-  "",
-];
+const latestTikTokPosts = ["", "", ""];
 
 async function getPhotoWall() {
   const photosDir = path.join(process.cwd(), "public", "photos");
@@ -51,7 +51,7 @@ export default async function SocialPage() {
       <h1 className="font-[var(--font-bebas)] text-6xl tracking-wider">Social</h1>
       <p className="mt-3 font-[var(--font-inter)] text-white/70">Profile previews, latest links, and media wall.</p>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 md:grid-cols-3">
         {socials.map((social) => (
           <a
             key={social.name}
@@ -66,6 +66,24 @@ export default async function SocialPage() {
             <p className="mt-4 font-[var(--font-inter)] text-sm underline">Open profile</p>
           </a>
         ))}
+      </div>
+
+      <div className="mt-12">
+        <h2 className="font-[var(--font-bebas)] text-4xl tracking-wide">YouTube Preview</h2>
+        <p className="mt-2 font-[var(--font-inter)] text-white/70">
+          Auto-updating latest uploads from your channel.
+        </p>
+        <div className="mt-4 overflow-hidden border border-white/20 bg-black">
+          <iframe
+            title="Say Lez YouTube uploads"
+            width="100%"
+            height="420"
+            src={`https://www.youtube.com/embed/videoseries?list=${youtubeUploadsPlaylistId}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
       </div>
 
       <div className="mt-12">
@@ -102,7 +120,7 @@ export default async function SocialPage() {
       </div>
 
       <div className="mt-10 border border-white/20 bg-white/[0.03] p-5 font-[var(--font-inter)] text-white/80">
-        Auto-updating feed is possible next with API integration (Instagram Graph + TikTok source). I can set that up after we lock your preferred hosting approach.
+        Instagram API can be added later, but your YouTube preview is now auto-updating from channel uploads.
       </div>
     </section>
   );
