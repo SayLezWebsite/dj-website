@@ -23,7 +23,8 @@ const socials = [
   },
 ];
 
-const youtubeUploadsPlaylistId = "UUvdodF39BFDMyfrGxpKHMbw";
+const youtubeChannelUrl = "https://www.youtube.com/@saylezzzz";
+const youtubeChannelId = "UCvdodF39BFDMyfrGxpKHMbw";
 
 // Paste direct post/reel links here for latest embeds-style cards.
 const latestInstagramPosts = ["", "", ""];
@@ -41,8 +42,35 @@ async function getPhotoWall() {
     .map((file) => `/photos/${file}`);
 }
 
+type YouTubeVideo = { id: string; title: string; url: string; thumbnail: string };
+
+async function getLatestYouTubeVideos(): Promise<YouTubeVideo[]> {
+  try {
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${youtubeChannelId}`;
+    const xml = await fetch(rssUrl, { next: { revalidate: 1800 } }).then((r) => r.text());
+
+    const entries = xml.match(/<entry>[\s\S]*?<\/entry>/g)?.slice(0, 6) ?? [];
+
+    return entries
+      .map((entry) => {
+        const id = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1] ?? "";
+        const title = entry.match(/<title>([\s\S]*?)<\/title>/)?.[1]?.trim() ?? "YouTube upload";
+        return {
+          id,
+          title,
+          url: `https://www.youtube.com/watch?v=${id}`,
+          thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+        };
+      })
+      .filter((v) => Boolean(v.id));
+  } catch {
+    return [];
+  }
+}
+
 export default async function SocialPage() {
   const photoWall = await getPhotoWall();
+  const youtubeVideos = await getLatestYouTubeVideos();
   const igLinks = latestInstagramPosts.filter(Boolean);
   const tiktokLinks = latestTikTokPosts.filter(Boolean);
 
@@ -69,21 +97,44 @@ export default async function SocialPage() {
       </div>
 
       <div className="mt-12">
-        <h2 className="font-[var(--font-bebas)] text-4xl tracking-wide">YouTube Preview</h2>
+        <h2 className="font-[var(--font-bebas)] text-4xl tracking-wide">YouTube Profile Preview</h2>
         <p className="mt-2 font-[var(--font-inter)] text-white/70">
-          Auto-updating latest uploads from your channel.
+          Latest uploads from your channel. Click any video card to watch on YouTube.
         </p>
-        <div className="mt-4 overflow-hidden border border-white/20 bg-black">
-          <iframe
-            title="Say Lez YouTube uploads"
-            width="100%"
-            height="420"
-            src={`https://www.youtube.com/embed/videoseries?list=${youtubeUploadsPlaylistId}`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        </div>
+
+        <a
+          href={youtubeChannelUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-block font-[var(--font-inter)] underline"
+        >
+          Open @saylezzzz channel ↗
+        </a>
+
+        {youtubeVideos.length > 0 ? (
+          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {youtubeVideos.map((video) => (
+              <a
+                key={video.id}
+                href={video.url}
+                target="_blank"
+                rel="noreferrer"
+                className="overflow-hidden border border-white/20 bg-white/[0.03] transition hover:border-white"
+              >
+                <Image
+                  src={video.thumbnail}
+                  alt={video.title}
+                  width={1280}
+                  height={720}
+                  className="h-auto w-full object-cover"
+                />
+                <div className="p-3 font-[var(--font-inter)] text-sm text-white/90">{video.title}</div>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 font-[var(--font-inter)] text-white/70">Couldn’t load channel videos right now, but the channel link above works.</p>
+        )}
       </div>
 
       <div className="mt-12">
