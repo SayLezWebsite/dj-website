@@ -46,20 +46,23 @@ export default async function Home() {
       <HeroMediaRotator items={heroMedia} />
       <div className="absolute inset-0 bg-[#0d0f12]/45" />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center">
-        <p className="max-w-4xl font-[var(--font-inter)] text-2xl leading-relaxed text-white/92 md:text-4xl">
-          Say Lez is a DJ/producer based in Amsterdam, focused on Garage with a serious love for
-          R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
-          always rooted in feeling.
-        </p>
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl flex-col items-center justify-start px-6 pb-16 pt-28 text-center md:pt-36">
+        <div className="w-full max-w-4xl rounded-2xl border border-white/15 bg-[#13161b]/45 px-6 py-7 text-left backdrop-blur-sm">
+          <p className="font-[var(--font-bebas)] text-3xl tracking-widest text-white md:text-4xl">Biography</p>
+          <p className="mt-3 font-[var(--font-inter)] text-lg leading-relaxed text-white/90 md:text-2xl">
+            Say Lez is a DJ/producer based in Amsterdam, focused on Garage with a serious love for
+            R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
+            always rooted in feeling.
+          </p>
+        </div>
 
         <div className="mt-8 w-full max-w-xl text-left">
           <PagePreviewSlider />
         </div>
 
-        <div className="mt-4 w-full max-w-xl border border-white/20 bg-[#13161b]/60 p-4 font-[var(--font-inter)] text-left">
-          <p className="text-xs uppercase tracking-widest text-white/65">Next showdate</p>
-          <p className="mt-1 text-lg text-white">CloseCall — Skatecafe — 27 February</p>
+        <div className="mt-4 w-full max-w-xl rounded-xl border border-white/20 bg-[#13161b]/60 p-4 font-[var(--font-inter)] text-left">
+          <p className="font-[var(--font-bebas)] text-2xl tracking-wider text-white">Next showdate</p>
+          <p className="mt-1 text-base text-white/90 md:text-lg">CloseCall — Skatecafe — 27 February</p>
           <Link href="/shows" className="mt-3 inline-block underline text-white/90">
             View all dates
           </Link>
