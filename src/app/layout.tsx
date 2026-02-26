@@ -29,11 +29,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${bebas.variable} ${inter.variable} antialiased`}>
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#111317]/80 backdrop-blur">
-          <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-            <Link href="/" className="font-[var(--font-bebas)] text-3xl tracking-widest">
+          <nav className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2 md:flex-row md:items-center md:justify-between md:py-3">
+            <Link href="/" className="font-[var(--font-bebas)] text-2xl tracking-widest md:text-3xl">
               SAY LEZ
             </Link>
-            <div className="flex gap-5 text-base font-[var(--font-inter)] font-semibold text-white/95 md:text-lg">
+            <div className="no-scrollbar flex w-full gap-4 overflow-x-auto whitespace-nowrap pb-1 text-sm font-[var(--font-inter)] font-semibold text-white/95 md:w-auto md:gap-5 md:overflow-visible md:pb-0 md:text-lg">
               <Link href="/">Home</Link>
               <Link href="/shows">Shows</Link>
               <Link href="/music">Music</Link>
@@ -44,7 +44,7 @@ export default function RootLayout({
             </div>
           </nav>
         </header>
-        <main className="pt-16">{children}</main>
+        <main className="pt-24 md:pt-16">{children}</main>
         <RadioPlayer />
       </body>
     </html>

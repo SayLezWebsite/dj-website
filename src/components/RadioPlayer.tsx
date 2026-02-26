@@ -140,7 +140,7 @@ export default function RadioPlayer() {
         </div>
       )}
 
-      <div className="fixed bottom-5 right-5 z-[70] w-72 rounded-xl border border-white/20 bg-gradient-to-b from-[#111a29]/95 to-[#090e16]/95 p-3 text-white shadow-xl backdrop-blur-md">
+      <div className="fixed bottom-3 right-1/2 z-[70] w-[92vw] max-w-sm translate-x-1/2 rounded-xl border border-white/20 bg-gradient-to-b from-[#111a29]/95 to-[#090e16]/95 p-3 text-white shadow-xl backdrop-blur-md md:bottom-5 md:right-5 md:w-72 md:max-w-none md:translate-x-0">
         <p className="font-[var(--font-bebas)] text-2xl tracking-wider text-white">SAY LEZ RADIO</p>
         <p className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Now playing</p>
         <p className="truncate text-sm text-white/95">{currentTrackName}</p>

@@ -49,18 +49,18 @@ export default async function Home() {
       <HeroMediaRotator items={heroMedia} />
       <div className="absolute inset-0 bg-[#0d0f12]/45" />
 
-      <div className="relative z-10 mx-auto flex h-[calc(100vh-64px)] max-w-6xl flex-col items-center justify-center px-5 py-4 text-center">
-        <p className="mb-5 max-w-4xl font-[var(--font-inter)] text-sm leading-relaxed text-white/92 md:text-lg">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-96px)] max-w-6xl flex-col items-center justify-center px-4 py-5 text-center md:h-[calc(100vh-64px)] md:px-5 md:py-4">
+        <p className="mb-4 max-w-4xl px-1 font-[var(--font-inter)] text-xs leading-relaxed text-white/92 sm:text-sm md:mb-5 md:text-lg">
           Say Lez is a DJ/producer based in Amsterdam, focused on Garage with a serious love for
           R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
           always rooted in feeling.
         </p>
 
-        <div className="mt-2 w-full max-w-xl text-left">
+        <div className="mt-1 w-full max-w-xl text-left">
           <PagePreviewSlider />
         </div>
 
-        <div className="mt-3 w-full max-w-xl rounded-2xl border border-white/30 bg-gradient-to-b from-[#1a1f27]/85 to-[#11151b]/82 p-4 font-[var(--font-inter)] text-left shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur-md">
+        <div className="mt-2 w-full max-w-xl rounded-2xl border border-white/30 bg-gradient-to-b from-[#1a1f27]/85 to-[#11151b]/82 p-3 font-[var(--font-inter)] text-left shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur-md md:mt-3 md:p-4">
           <p className="font-[var(--font-bebas)] text-xl tracking-wider text-white">Next showdate</p>
           <div className="mt-2 grid gap-2 sm:grid-cols-[82px_1fr]">
             <div className="overflow-hidden rounded-md border border-white/15 bg-black/30">

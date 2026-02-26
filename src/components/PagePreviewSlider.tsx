@@ -83,7 +83,7 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
   return (
     <div className="w-full shrink-0 px-1">
       <div className="mt-2 flex items-start justify-between gap-3">
-        <Link href={active.href} className="cursor-pointer font-[var(--font-bebas)] text-4xl leading-none tracking-wide hover:opacity-85">
+        <Link href={active.href} className="cursor-pointer font-[var(--font-bebas)] text-3xl leading-none tracking-wide hover:opacity-85 md:text-4xl">
           {active.title}
         </Link>
       </div>
@@ -97,7 +97,7 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
             src={active.feature.embedUrl}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
-            className="h-28 w-full"
+            className="h-24 w-full md:h-28"
           />
           <a href={active.feature.videoUrl} target="_blank" rel="noreferrer" className="block px-3 py-2 text-sm underline text-white/90">
             Open YouTube channel ↗
@@ -114,7 +114,7 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
 
       {active.feature?.kind === "video" && (
         <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
-          <video src={active.feature.src} className="h-28 w-full object-cover" autoPlay muted loop playsInline preload="metadata" />
+          <video src={active.feature.src} className="h-24 w-full object-cover md:h-28" autoPlay muted loop playsInline preload="metadata" />
           <p className="px-3 py-2 text-sm text-white/85">Videos preview</p>
         </div>
       )}
@@ -173,7 +173,7 @@ export default function PagePreviewSlider() {
   const translate = useMemo(() => `translateX(-${index * 100}%)`, [index]);
 
   return (
-    <div className="max-w-xl rounded-2xl border border-white/30 bg-gradient-to-b from-[#1a1f27]/85 to-[#11151b]/82 p-4 font-[var(--font-inter)] shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur-md">
+    <div className="max-w-xl rounded-2xl border border-white/30 bg-gradient-to-b from-[#1a1f27]/85 to-[#11151b]/82 p-3 font-[var(--font-inter)] shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur-md md:p-4">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs uppercase tracking-[0.2em] text-white/60">Explore</p>
         <div className="flex gap-2">
