@@ -11,6 +11,15 @@ type MediaItem = {
   src: string;
 };
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 async function getHeroMedia(): Promise<MediaItem[]> {
   const photosDir = path.join(process.cwd(), "public", "photos");
   const videosDir = path.join(process.cwd(), "public", "videos");
@@ -40,10 +49,12 @@ async function getHeroMedia(): Promise<MediaItem[]> {
     .slice(0, 10)
     .map((x) => ({ type: "photo" as const, src: `/photos/${x.file}` }));
 
-  const videos = videosByMtime
-    .sort((a, b) => b.mtime - a.mtime)
-    .slice(0, 8)
-    .map((x) => ({ type: "video" as const, src: `/videos/${x.file}` }));
+  const videos = shuffleArray(
+    videosByMtime
+      .sort((a, b) => b.mtime - a.mtime)
+      .slice(0, 8)
+      .map((x) => ({ type: "video" as const, src: `/videos/${x.file}` })),
+  );
 
   const mixed: MediaItem[] = [];
   const max = Math.max(photos.length, videos.length);
