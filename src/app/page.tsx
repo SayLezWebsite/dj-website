@@ -2,6 +2,7 @@ import Link from "next/link";
 import fs from "node:fs/promises";
 import path from "node:path";
 import HeroMediaRotator from "@/components/HeroMediaRotator";
+import PagePreviewSlider from "@/components/PagePreviewSlider";
 
 type MediaItem = {
   type: "photo" | "video";
@@ -53,7 +54,9 @@ export default async function Home() {
           always rooted in feeling.
         </p>
 
-        <div className="mt-8 max-w-xl border border-white/20 bg-[#13161b]/65 p-4 font-[var(--font-inter)]">
+        <PagePreviewSlider />
+
+        <div className="mt-4 max-w-xl border border-white/20 bg-[#13161b]/65 p-4 font-[var(--font-inter)]">
           <p className="text-xs uppercase tracking-widest text-white/65">Next showdate</p>
           <p className="mt-1 text-lg text-white">CloseCall — Skatecafe — 27 February</p>
           <Link href="/shows" className="mt-3 inline-block underline text-white/90">
