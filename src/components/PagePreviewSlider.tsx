@@ -79,7 +79,7 @@ const previews: Preview[] = [
   },
 ];
 
-function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeInteract: () => void }) {
+function Slide({ active, onMediaInteract }: { active: Preview; onMediaInteract: () => void }) {
   return (
     <div className="w-full shrink-0 px-1">
       <div className="mt-2 flex items-start justify-between gap-3">
@@ -91,7 +91,7 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
       <p className="mt-1 text-sm text-white/85">{active.description}</p>
 
       {active.feature?.kind === "youtube" && (
-        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35" onMouseDown={onYoutubeInteract} onTouchStart={onYoutubeInteract}>
+        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35" onMouseDown={onMediaInteract} onTouchStart={onMediaInteract}>
           <iframe
             title={active.feature.title}
             src={active.feature.embedUrl}
@@ -106,8 +106,8 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
       )}
 
       {active.feature?.kind === "soundcloud" && (
-        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
-          <iframe title={active.feature.title} width="100%" height="110" allow="autoplay" src={active.feature.embedUrl} style={{ filter: "invert(1) hue-rotate(180deg)" }} />
+        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35" onMouseDown={onMediaInteract} onTouchStart={onMediaInteract}>
+          <iframe title={active.feature.title} width="100%" height="110" allow="autoplay" src={active.feature.embedUrl} />
           <p className="px-3 py-2 text-sm text-white/85">SoundCloud: Latest tracks and mixes</p>
         </div>
       )}
@@ -166,9 +166,9 @@ export default function PagePreviewSlider() {
 
   useEffect(() => {
     if (!autoRotate) return;
-    const id = setInterval(() => setIndex((prev) => (prev + 1) % total), 4200);
+    const id = setInterval(() => setIndex((prev) => (prev + 1) % total), 7200);
     return () => clearInterval(id);
-  }, [total, autoRotate]);
+  }, [total, autoRotate, index]);
 
   const translate = useMemo(() => `translateX(-${index * 100}%)`, [index]);
 
@@ -177,9 +177,6 @@ export default function PagePreviewSlider() {
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs uppercase tracking-[0.2em] text-white/60">Explore</p>
         <div className="flex gap-2">
-          <button type="button" onClick={() => setAutoRotate((v) => !v)} className="cursor-pointer rounded-full border border-white/30 px-3 py-1 text-xs text-white/90">
-            {autoRotate ? "Pause" : "Play"}
-          </button>
           <button type="button" onClick={() => setIndex((prev) => (prev - 1 + total) % total)} className="cursor-pointer rounded-full border border-white/30 px-3 py-1 text-sm text-white/90" aria-label="Previous preview">←</button>
           <button type="button" onClick={() => setIndex((prev) => (prev + 1) % total)} className="cursor-pointer rounded-full border border-white/30 px-3 py-1 text-sm text-white/90" aria-label="Next preview">→</button>
         </div>
@@ -188,7 +185,7 @@ export default function PagePreviewSlider() {
       <div className="mt-1 overflow-hidden">
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: translate }}>
           {resolvedPreviews.map((item) => (
-            <Slide key={item.title} active={item} onYoutubeInteract={() => setAutoRotate(false)} />
+            <Slide key={item.title} active={item} onMediaInteract={() => setAutoRotate(false)} />
           ))}
         </div>
       </div>
