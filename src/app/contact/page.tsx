@@ -10,6 +10,31 @@ export default function ContactPage() {
           simon@itsaclosecall.nl
         </a>
       </p>
+
+      <form
+        className="mt-8 grid gap-3 border border-white/20 bg-[#13161b]/65 p-5 font-[var(--font-inter)]"
+        action="mailto:simon@itsaclosecall.nl"
+        method="post"
+        encType="text/plain"
+      >
+        <p className="text-sm text-white/75">Direct application email draft</p>
+        <input
+          className="border border-white/20 bg-black/30 px-3 py-2"
+          type="text"
+          name="Subject"
+          placeholder="Subject"
+          required
+        />
+        <textarea
+          className="min-h-36 border border-white/20 bg-black/30 px-3 py-2"
+          name="Message"
+          placeholder="Your message"
+          required
+        />
+        <button className="w-fit border border-white px-5 py-2" type="submit">
+          Open Email Draft
+        </button>
+      </form>
     </section>
   );
 }

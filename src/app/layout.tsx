@@ -27,17 +27,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bebas.variable} ${inter.variable} antialiased`}>
-        <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#111317]/80 backdrop-blur">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <Link href="/" className="font-[var(--font-bebas)] text-3xl tracking-widest">
               SAY LEZ
             </Link>
             <div className="flex gap-4 text-sm font-[var(--font-inter)] text-white/90">
               <Link href="/">Home</Link>
-              <Link href="/shows">Shows</Link>
               <Link href="/music">Music</Link>
+              <Link href="/social">Socials</Link>
+              <Link href="/shows">Shows</Link>
               <Link href="/videos">Videos</Link>
-              <Link href="/social">Social</Link>
               <Link href="/presskit">Presskit</Link>
               <Link href="/contact">Contact</Link>
             </div>
