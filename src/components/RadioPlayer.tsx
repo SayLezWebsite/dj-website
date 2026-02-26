@@ -22,6 +22,8 @@ export default function RadioPlayer() {
   const [playlist, setPlaylist] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
   const [volume, setVolume] = useState(0.5);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const currentTrack = useMemo(() => playlist[index], [playlist, index]);
   const currentTrackName = useMemo(() => {
@@ -68,6 +70,7 @@ export default function RadioPlayer() {
     if (!audio || !currentTrack) return;
     audio.src = currentTrack;
     audio.load();
+    setCurrentTime(0);
 
     if (enabled) {
       audio.play().catch(() => {
@@ -116,6 +119,23 @@ export default function RadioPlayer() {
     handleNext();
   }
 
+  function handleSeek(value: number) {
+    const audio = audioRef.current;
+    if (!audio || !Number.isFinite(duration) || duration <= 0) return;
+    const nextTime = (value / 100) * duration;
+    audio.currentTime = nextTime;
+    setCurrentTime(nextTime);
+  }
+
+  function formatTime(sec: number) {
+    if (!Number.isFinite(sec) || sec < 0) return "0:00";
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${m}:${s}`;
+  }
+
   return (
     <>
       {showPrompt && pathname === "/" && (
@@ -144,6 +164,23 @@ export default function RadioPlayer() {
         <p className="font-[var(--font-bebas)] text-2xl tracking-wider text-white">SAY LEZ RADIO</p>
         <p className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Now playing</p>
         <p className="truncate text-sm text-white/95">{currentTrackName}</p>
+
+        <div className="mt-2 rounded-md border border-white/20 bg-black/20 px-2 py-2">
+          <input
+            type="range"
+            min={0}
+            max={100}
+            step={0.1}
+            value={duration > 0 ? (currentTime / duration) * 100 : 0}
+            onChange={(e) => handleSeek(Number(e.target.value))}
+            className="h-1.5 w-full cursor-pointer accent-white"
+            aria-label="Track progress"
+          />
+          <div className="mt-1 flex justify-between text-[10px] text-white/70">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+        </div>
 
         <div className="mt-3 flex items-center justify-center gap-3">
           <button
@@ -195,7 +232,13 @@ export default function RadioPlayer() {
         </div>
       </div>
 
-      <audio ref={audioRef} onEnded={handleEnded} preload="none" />
+      <audio
+        ref={audioRef}
+        onEnded={handleEnded}
+        onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime || 0)}
+        onLoadedMetadata={(e) => setDuration(e.currentTarget.duration || 0)}
+        preload="none"
+      />
     </>
   );
 }
