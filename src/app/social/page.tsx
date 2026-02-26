@@ -97,7 +97,7 @@ export default async function SocialPage() {
       </div>
 
       <div className="mt-12">
-        <h2 className="font-[var(--font-bebas)] text-4xl tracking-wide">YouTube Profile Preview</h2>
+        <h2 className="font-[var(--font-bebas)] text-4xl tracking-wide">YouTube</h2>
         <p className="mt-2 font-[var(--font-inter)] text-white/70">
           Latest uploads from your channel. Click any video card to watch on YouTube.
         </p>
