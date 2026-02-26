@@ -140,7 +140,7 @@ export default function RadioPlayer() {
         </div>
       )}
 
-      <div className="fixed bottom-5 right-5 z-[70] w-72 rounded-xl border border-white/25 bg-gradient-to-b from-[#2a4d82]/90 to-[#1f3f6c]/90 p-3 text-white shadow-xl backdrop-blur-md">
+      <div className="fixed bottom-5 right-5 z-[70] w-72 rounded-xl border border-white/20 bg-gradient-to-b from-[#111a29]/95 to-[#090e16]/95 p-3 text-white shadow-xl backdrop-blur-md">
         <p className="font-[var(--font-bebas)] text-2xl tracking-wider text-white">SAY LEZ RADIO</p>
         <p className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Now playing</p>
         <p className="truncate text-sm text-white/95">{currentTrackName}</p>
@@ -149,7 +149,7 @@ export default function RadioPlayer() {
           <button
             type="button"
             onClick={handlePrev}
-            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/95 text-[#2a4d82] shadow"
+            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/95 text-[#101a2a] shadow"
             aria-label="Previous track"
             title="Previous"
           >
@@ -159,7 +159,7 @@ export default function RadioPlayer() {
           <button
             type="button"
             onClick={handleToggle}
-            className="cursor-pointer inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white text-[#2a4d82] shadow-lg"
+            className="cursor-pointer inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white text-[#101a2a] shadow-lg"
             title={enabled ? "Pause radio" : "Play radio"}
             aria-label={enabled ? "Pause radio" : "Play radio"}
           >
@@ -173,7 +173,7 @@ export default function RadioPlayer() {
           <button
             type="button"
             onClick={handleNext}
-            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/95 text-[#2a4d82] shadow"
+            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/95 text-[#101a2a] shadow"
             aria-label="Next track"
             title="Next"
           >

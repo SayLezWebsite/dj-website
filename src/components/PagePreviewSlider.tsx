@@ -21,6 +21,7 @@ type Preview = {
   feature?:
     | { kind: "youtube"; title: string; videoUrl: string; embedUrl: string }
     | { kind: "soundcloud"; title: string; embedUrl: string }
+    | { kind: "video"; title: string; src: string }
     | { kind: "contact"; email: string }
     | { kind: "text"; label: string; value: string };
 };
@@ -61,7 +62,7 @@ const previews: Preview[] = [
     href: "/videos",
     description: "Visual archive with clips and live photo moments.",
     quickLinks: [{ label: "Open video grid", href: "/videos" }],
-    feature: { kind: "text", label: "Feature", value: "Latest clips are listed directly on the Videos page." },
+    feature: { kind: "video", title: "Videos preview", src: "/videos/IMG_2795.mp4" },
   },
   {
     title: "Presskit",
@@ -106,8 +107,15 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
 
       {active.feature?.kind === "soundcloud" && (
         <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
-          <iframe title={active.feature.title} width="100%" height="110" allow="autoplay" src={active.feature.embedUrl} />
+          <iframe title={active.feature.title} width="100%" height="110" allow="autoplay" src={active.feature.embedUrl} style={{ filter: "invert(1) hue-rotate(180deg)" }} />
           <p className="px-3 py-2 text-sm text-white/85">SoundCloud: Latest tracks and mixes</p>
+        </div>
+      )}
+
+      {active.feature?.kind === "video" && (
+        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
+          <video src={active.feature.src} className="h-28 w-full object-cover" autoPlay muted loop playsInline preload="metadata" />
+          <p className="px-3 py-2 text-sm text-white/85">Videos preview</p>
         </div>
       )}
 

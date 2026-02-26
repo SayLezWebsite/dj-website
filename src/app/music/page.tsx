@@ -8,7 +8,7 @@ const latestTracks = [
 ];
 
 function scEmbedUrl(trackUrl: string) {
-  return `https://w.soundcloud.com/player/?url=${encodeURIComponent(trackUrl)}&color=%23ffffff&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=false`;
+  return `https://w.soundcloud.com/player/?url=${encodeURIComponent(trackUrl)}&color=%230d0f12&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=false`;
 }
 
 export default function MusicPage() {
@@ -18,7 +18,7 @@ export default function MusicPage() {
     <section className="mx-auto max-w-5xl px-6 py-16">
       <h1 className="font-[var(--font-bebas)] text-6xl tracking-wider">Music</h1>
       <p className="mt-3 font-[var(--font-inter)] text-white/70">
-        Latest from SoundCloud + Spotify.
+        Latest from SoundCloud + Spotify (dark player theme).
       </p>
 
       <div className="mt-8 grid gap-8">
@@ -31,6 +31,7 @@ export default function MusicPage() {
               height="166"
               allow="autoplay"
               src={scEmbedUrl(soundcloudProfile)}
+              style={{ filter: "invert(1) hue-rotate(180deg)" }}
             />
           </div>
           <a
@@ -49,7 +50,7 @@ export default function MusicPage() {
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {filledTracks.map((trackUrl) => (
                 <div key={trackUrl} className="overflow-hidden border border-white/20 bg-white/5 p-3">
-                  <iframe title={trackUrl} width="100%" height="166" allow="autoplay" src={scEmbedUrl(trackUrl)} />
+                  <iframe title={trackUrl} width="100%" height="166" allow="autoplay" src={scEmbedUrl(trackUrl)} style={{ filter: "invert(1) hue-rotate(180deg)" }} />
                 </div>
               ))}
             </div>
