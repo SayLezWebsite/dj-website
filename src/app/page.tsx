@@ -87,30 +87,30 @@ export default async function Home() {
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/30"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="Instagram"
           >
-            <span className="font-[var(--font-bebas)] text-lg">IG</span>
+            <Image src="/icons/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
           </a>
           <a
             href="https://www.tiktok.com/@saylez__?lang=en"
             target="_blank"
             rel="noreferrer"
             aria-label="TikTok"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/30"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="TikTok"
           >
-            <span className="font-[var(--font-bebas)] text-lg">TT</span>
+            <Image src="/icons/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
           </a>
           <a
             href="https://soundcloud.com/saylezam"
             target="_blank"
             rel="noreferrer"
             aria-label="SoundCloud"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/30"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="SoundCloud"
           >
-            <span className="font-[var(--font-bebas)] text-lg">SC</span>
+            <Image src="/icons/soundcloud.png" alt="SoundCloud" width={24} height={24} className="h-6 w-6" />
           </a>
         </div>
       </div>
