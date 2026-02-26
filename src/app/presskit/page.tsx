@@ -41,13 +41,15 @@ export default function PresskitPage() {
       </div>
 
       <div className="mt-10 border border-white/20 bg-white/[0.03] p-5 font-[var(--font-inter)]">
-        <p className="font-[var(--font-bebas)] text-3xl tracking-wide">Downloads</p>
-        <p className="mt-2 text-white/75">Drop your files into <code className="text-white">public/files/</code> and link them below.</p>
-        <ul className="mt-4 list-disc pl-5 text-white/90">
-          <li><a className="underline" href="/files/press-photo-1.jpg" target="_blank" rel="noreferrer">Press Photo 1</a></li>
-          <li><a className="underline" href="/files/press-photo-2.jpg" target="_blank" rel="noreferrer">Press Photo 2</a></li>
-          <li><a className="underline" href="/files/tech-rider.pdf" target="_blank" rel="noreferrer">Tech Rider (PDF)</a></li>
-        </ul>
+        <p className="font-[var(--font-bebas)] text-3xl tracking-wide">Presskit Folder Preview</p>
+        <p className="mt-2 text-white/75">Browse available files directly from your Google Drive presskit folder.</p>
+        <div className="mt-4 overflow-hidden border border-white/20 bg-black/30">
+          <iframe
+            title="Google Drive Presskit"
+            src="https://drive.google.com/embeddedfolderview?id=1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy#grid"
+            className="h-[420px] w-full"
+          />
+        </div>
       </div>
 
       <div className="mt-8 font-[var(--font-inter)] text-sm text-white/70">

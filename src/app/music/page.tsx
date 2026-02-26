@@ -44,9 +44,9 @@ export default function MusicPage() {
         </div>
 
         <div>
-          <h3 className="font-[var(--font-bebas)] text-2xl tracking-wide">Latest 3 tracks</h3>
-          {filledTracks.length === 3 ? (
-            <div className="mt-4 space-y-4">
+          <h3 className="font-[var(--font-bebas)] text-2xl tracking-wide">Latest tracks</h3>
+          {filledTracks.length > 0 ? (
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
               {filledTracks.map((trackUrl) => (
                 <div key={trackUrl} className="overflow-hidden border border-white/20 bg-white/5 p-3">
                   <iframe title={trackUrl} width="100%" height="166" allow="autoplay" src={scEmbedUrl(trackUrl)} />
@@ -55,7 +55,7 @@ export default function MusicPage() {
             </div>
           ) : (
             <p className="mt-3 font-[var(--font-inter)] text-white/70">
-              Send me your last 3 SoundCloud track URLs and I’ll wire them in instantly.
+              Send me your latest SoundCloud track URLs and I’ll wire them in instantly.
             </p>
           )}
         </div>
