@@ -24,6 +24,11 @@ export default function RadioPlayer() {
   const [volume, setVolume] = useState(0.5);
 
   const currentTrack = useMemo(() => playlist[index], [playlist, index]);
+  const currentTrackName = useMemo(() => {
+    if (!currentTrack) return "No track";
+    const raw = currentTrack.split("/").pop() ?? currentTrack;
+    return decodeURIComponent(raw).replace(/\.mp3$/i, "");
+  }, [currentTrack]);
 
   useEffect(() => {
     const savedEnabled = localStorage.getItem("saylez-radio-enabled");
@@ -62,6 +67,7 @@ export default function RadioPlayer() {
     const audio = audioRef.current;
     if (!audio || !currentTrack) return;
     audio.src = currentTrack;
+    audio.load();
 
     if (enabled) {
       audio.play().catch(() => {
@@ -121,7 +127,11 @@ export default function RadioPlayer() {
         </div>
       )}
 
-      <div className="fixed bottom-5 right-5 z-[70] flex flex-col items-center gap-2">
+      <div className="fixed bottom-5 right-5 z-[70] flex w-64 flex-col items-end gap-2">
+        <div className="w-full rounded-md border border-white/25 bg-[#10141b]/85 px-3 py-2 text-left text-xs text-white/85 shadow-xl backdrop-blur-md">
+          <p className="text-[10px] uppercase tracking-wider text-white/60">Now playing</p>
+          <p className="truncate">{currentTrackName}</p>
+        </div>
         <button
           type="button"
           onClick={handleToggle}
