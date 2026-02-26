@@ -9,7 +9,7 @@ export default function PresskitPage() {
         Soul and sampling. His sets and tracks lean into swing, warmth and emotion, always rooted in feeling.
       </p>
 
-      <div className="mt-8">
+      <div className="mt-8 flex flex-wrap gap-3">
         <a
           href="https://drive.google.com/drive/folders/1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy?usp=sharing"
           target="_blank"
@@ -17,6 +17,14 @@ export default function PresskitPage() {
           className="inline-block border border-white px-6 py-3 font-[var(--font-bebas)] text-2xl tracking-widest transition hover:bg-white hover:text-black"
         >
           PRESSKIT
+        </a>
+        <a
+          href="https://drive.google.com/drive/folders/1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy?usp=sharing"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block border border-white/70 px-5 py-3 font-[var(--font-inter)] text-sm uppercase tracking-wider"
+        >
+          Download / Open Folder
         </a>
       </div>
 

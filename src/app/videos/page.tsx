@@ -1,6 +1,7 @@
 import Image from "next/image";
 import fs from "node:fs/promises";
 import path from "node:path";
+import VideoSelector from "@/components/VideoSelector";
 
 type MediaBuckets = {
   photos: string[];
@@ -45,6 +46,7 @@ export default async function VideosPage() {
 
       <div className="mt-10">
         <h2 className="font-[var(--font-bebas)] text-3xl tracking-wide">Videos</h2>
+        <VideoSelector videos={videos} />
         {videos.length > 0 ? (
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {videos.map((src) => (

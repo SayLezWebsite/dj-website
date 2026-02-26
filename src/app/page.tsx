@@ -49,7 +49,7 @@ export default async function Home() {
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl flex-col items-center justify-start px-6 pb-16 pt-28 text-center md:pt-36">
         <div className="w-full max-w-4xl rounded-2xl border border-white/15 bg-[#13161b]/45 px-6 py-7 text-left backdrop-blur-sm">
           <p className="font-[var(--font-bebas)] text-3xl tracking-widest text-white md:text-4xl">Biography</p>
-          <p className="mt-3 font-[var(--font-inter)] text-lg leading-relaxed text-white/90 md:text-2xl">
+          <p className="mt-3 font-[var(--font-inter)] text-base leading-relaxed text-white/88 md:text-xl">
             Say Lez is a DJ/producer based in Amsterdam, focused on Garage with a serious love for
             R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
             always rooted in feeling.
@@ -68,12 +68,36 @@ export default async function Home() {
           </Link>
         </div>
 
-        <div className="mt-6 flex flex-wrap justify-center gap-4 font-[var(--font-inter)] text-sm text-white/90">
-          <a href="https://www.instagram.com/say.lez_/" target="_blank" rel="noreferrer" className="underline">
-            Instagram
+        <div className="mt-6 flex flex-wrap justify-center gap-3 text-white/90">
+          <a
+            href="https://www.instagram.com/say.lez_/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/30"
+            title="Instagram"
+          >
+            <span className="font-[var(--font-bebas)] text-lg">IG</span>
           </a>
-          <a href="https://www.tiktok.com/@saylez__?lang=en" target="_blank" rel="noreferrer" className="underline">
-            TikTok
+          <a
+            href="https://www.tiktok.com/@saylez__?lang=en"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="TikTok"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/30"
+            title="TikTok"
+          >
+            <span className="font-[var(--font-bebas)] text-lg">TT</span>
+          </a>
+          <a
+            href="https://soundcloud.com/saylezam"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="SoundCloud"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/30"
+            title="SoundCloud"
+          >
+            <span className="font-[var(--font-bebas)] text-lg">SC</span>
           </a>
         </div>
       </div>
