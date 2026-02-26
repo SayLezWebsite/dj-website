@@ -87,30 +87,30 @@ export default async function Home() {
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
+            className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="Instagram"
           >
-            <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} className="h-6 w-6" />
+            <img src="/icons/instagram.svg" alt="Instagram" className="h-5 w-5 invert" />
           </a>
           <a
             href="https://www.tiktok.com/@saylez__?lang=en"
             target="_blank"
             rel="noreferrer"
             aria-label="TikTok"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
+            className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="TikTok"
           >
-            <Image src="/icons/tiktok.svg" alt="TikTok" width={24} height={24} className="h-6 w-6" />
+            <img src="/icons/tiktok.svg" alt="TikTok" className="h-5 w-5 invert" />
           </a>
           <a
             href="https://soundcloud.com/saylezam"
             target="_blank"
             rel="noreferrer"
             aria-label="SoundCloud"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
+            className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="SoundCloud"
           >
-            <Image src="/icons/soundcloud.svg" alt="SoundCloud" width={24} height={24} className="h-6 w-6" />
+            <img src="/icons/soundcloud.svg" alt="SoundCloud" className="h-5 w-5 invert" />
           </a>
         </div>
       </div>
