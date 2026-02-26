@@ -32,11 +32,11 @@ export default function RootLayout({
             <Link href="/" className="font-[var(--font-bebas)] text-3xl tracking-widest">
               SAY LEZ
             </Link>
-            <div className="flex gap-4 text-sm font-[var(--font-inter)] text-white/90">
+            <div className="flex gap-5 text-base font-[var(--font-inter)] font-semibold text-white/95 md:text-lg">
               <Link href="/">Home</Link>
+              <Link href="/shows">Shows</Link>
               <Link href="/music">Music</Link>
               <Link href="/social">Socials</Link>
-              <Link href="/shows">Shows</Link>
               <Link href="/videos">Videos</Link>
               <Link href="/presskit">Presskit</Link>
               <Link href="/contact">Contact</Link>
