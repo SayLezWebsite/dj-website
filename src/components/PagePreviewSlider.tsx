@@ -151,6 +151,17 @@ export default function PagePreviewSlider() {
     setMusicTrack(pick);
   }, []);
 
+  useEffect(() => {
+    const current = resolvedPreviews[index];
+    if (!current || current.title !== "Music") return;
+
+    setMusicTrack((prev) => {
+      const pool = musicPreviewTracks.filter((t) => t !== prev);
+      const next = pool[Math.floor(Math.random() * pool.length)] ?? musicPreviewTracks[0];
+      return next;
+    });
+  }, [index]);
+
   const resolvedPreviews = useMemo(
     () =>
       previews.map((p) =>
