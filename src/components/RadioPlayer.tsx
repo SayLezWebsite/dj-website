@@ -140,39 +140,44 @@ export default function RadioPlayer() {
         </div>
       )}
 
-      <div className="fixed bottom-5 right-5 z-[70] w-72 rounded-xl border border-white/25 bg-[#10141b]/90 p-3 text-white shadow-xl backdrop-blur-md">
-        <p className="text-[10px] uppercase tracking-wider text-white/60">Now playing</p>
-        <p className="truncate text-sm text-white/90">{currentTrackName}</p>
+      <div className="fixed bottom-5 right-5 z-[70] w-72 rounded-xl border border-white/25 bg-gradient-to-b from-[#2a4d82]/90 to-[#1f3f6c]/90 p-3 text-white shadow-xl backdrop-blur-md">
+        <p className="font-[var(--font-bebas)] text-2xl tracking-wider text-white">SAY LEZ RADIO</p>
+        <p className="mt-1 text-[10px] uppercase tracking-wider text-white/70">Now playing</p>
+        <p className="truncate text-sm text-white/95">{currentTrackName}</p>
 
         <div className="mt-3 flex items-center justify-center gap-3">
           <button
             type="button"
             onClick={handlePrev}
-            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/90 text-black"
+            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/95 text-[#2a4d82] shadow"
             aria-label="Previous track"
             title="Previous"
           >
-            ⏮
+            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M11 18V6l-8 6 8 6zm1-6 8 6V6l-8 6z"/></svg>
           </button>
 
           <button
             type="button"
             onClick={handleToggle}
-            className="cursor-pointer inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/35 bg-white text-black"
+            className="cursor-pointer inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white text-[#2a4d82] shadow-lg"
             title={enabled ? "Pause radio" : "Play radio"}
             aria-label={enabled ? "Pause radio" : "Play radio"}
           >
-            {enabled ? "⏸" : "▶"}
+            {enabled ? (
+              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            )}
           </button>
 
           <button
             type="button"
             onClick={handleNext}
-            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/90 text-black"
+            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/95 text-[#2a4d82] shadow"
             aria-label="Next track"
             title="Next"
           >
-            ⏭
+            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M13 6v12l8-6-8-6zm-1 6-8-6v12l8-6z"/></svg>
           </button>
         </div>
 
