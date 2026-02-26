@@ -10,6 +10,7 @@ type Preview = {
   quickLinks?: { label: string; href: string }[];
   feature?:
     | { kind: "youtube"; title: string; videoUrl: string; embedUrl: string }
+    | { kind: "soundcloud"; title: string; embedUrl: string }
     | { kind: "contact"; email: string }
     | { kind: "text"; label: string; value: string };
 };
@@ -18,12 +19,17 @@ const previews: Preview[] = [
   {
     title: "Music",
     href: "/music",
-    description: "Latest drops and embedded players.",
+    description: "Latest tracks and mixes.",
     quickLinks: [
       { label: "SoundCloud", href: "https://soundcloud.com/saylezam" },
       { label: "Spotify", href: "https://open.spotify.com/" },
     ],
-    feature: { kind: "text", label: "Featured", value: "Newest SoundCloud tracks are embedded on the Music page." },
+    feature: {
+      kind: "soundcloud",
+      title: "SoundCloud: Latest tracks and mixes",
+      embedUrl:
+        "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/saylezam/lupita-ellaime-x-say-lez&color=%23ffffff&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=false",
+    },
   },
   {
     title: "Socials",
@@ -52,12 +58,7 @@ const previews: Preview[] = [
     title: "Presskit",
     href: "/presskit",
     description: "Booking details and downloadable press material.",
-    quickLinks: [
-      {
-        label: "Download Presskit",
-        href: "https://drive.google.com/drive/folders/1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy?usp=sharing",
-      },
-    ],
+    quickLinks: [{ label: "Open Presskit", href: "https://drive.google.com/drive/folders/1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy?usp=sharing" }],
     feature: { kind: "text", label: "Direct", value: "Google Drive folder preview is embedded on Presskit." },
   },
   {
@@ -68,7 +69,7 @@ const previews: Preview[] = [
   },
 ];
 
-function Slide({ active }: { active: Preview }) {
+function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeInteract: () => void }) {
   return (
     <div className="w-full shrink-0 px-1">
       <div className="mt-2 flex items-start justify-between gap-3">
@@ -80,7 +81,7 @@ function Slide({ active }: { active: Preview }) {
       <p className="mt-1 text-sm text-white/85">{active.description}</p>
 
       {active.feature?.kind === "youtube" && (
-        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
+        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35" onMouseDown={onYoutubeInteract} onTouchStart={onYoutubeInteract}>
           <iframe
             title={active.feature.title}
             src={active.feature.embedUrl}
@@ -91,6 +92,13 @@ function Slide({ active }: { active: Preview }) {
           <a href={active.feature.videoUrl} target="_blank" rel="noreferrer" className="block px-3 py-2 text-sm underline text-white/90">
             Open YouTube channel ↗
           </a>
+        </div>
+      )}
+
+      {active.feature?.kind === "soundcloud" && (
+        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
+          <iframe title={active.feature.title} width="100%" height="110" allow="autoplay" src={active.feature.embedUrl} />
+          <p className="px-3 py-2 text-sm text-white/85">SoundCloud: Latest tracks and mixes</p>
         </div>
       )}
 
@@ -107,13 +115,7 @@ function Slide({ active }: { active: Preview }) {
       {active.quickLinks && active.quickLinks.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-2 text-sm">
           {active.quickLinks.map((item) => (
-            <a
-              key={item.label + item.href}
-              href={item.href}
-              target={item.href.startsWith("http") ? "_blank" : undefined}
-              rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              className="cursor-pointer rounded-full border border-white/25 px-3 py-1 text-white/90"
-            >
+            <a key={item.label + item.href} href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noreferrer" : undefined} className="cursor-pointer rounded-full border border-white/25 px-3 py-1 text-white/90">
               {item.label}
             </a>
           ))}
@@ -125,15 +127,14 @@ function Slide({ active }: { active: Preview }) {
 
 export default function PagePreviewSlider() {
   const [index, setIndex] = useState(0);
-
+  const [autoRotate, setAutoRotate] = useState(true);
   const total = previews.length;
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % total);
-    }, 4200);
+    if (!autoRotate) return;
+    const id = setInterval(() => setIndex((prev) => (prev + 1) % total), 4200);
     return () => clearInterval(id);
-  }, [total]);
+  }, [total, autoRotate]);
 
   const translate = useMemo(() => `translateX(-${index * 100}%)`, [index]);
 
@@ -142,42 +143,25 @@ export default function PagePreviewSlider() {
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs uppercase tracking-[0.2em] text-white/60">Explore</p>
         <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setIndex((prev) => (prev - 1 + total) % total)}
-            className="rounded-full border border-white/30 px-3 py-1 text-sm text-white/90"
-            aria-label="Previous preview"
-          >
-            ←
+          <button type="button" onClick={() => setAutoRotate((v) => !v)} className="cursor-pointer rounded-full border border-white/30 px-3 py-1 text-xs text-white/90">
+            {autoRotate ? "Pause" : "Play"}
           </button>
-          <button
-            type="button"
-            onClick={() => setIndex((prev) => (prev + 1) % total)}
-            className="rounded-full border border-white/30 px-3 py-1 text-sm text-white/90"
-            aria-label="Next preview"
-          >
-            →
-          </button>
+          <button type="button" onClick={() => setIndex((prev) => (prev - 1 + total) % total)} className="cursor-pointer rounded-full border border-white/30 px-3 py-1 text-sm text-white/90" aria-label="Previous preview">←</button>
+          <button type="button" onClick={() => setIndex((prev) => (prev + 1) % total)} className="cursor-pointer rounded-full border border-white/30 px-3 py-1 text-sm text-white/90" aria-label="Next preview">→</button>
         </div>
       </div>
 
       <div className="mt-1 overflow-hidden">
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: translate }}>
           {previews.map((item) => (
-            <Slide key={item.title} active={item} />
+            <Slide key={item.title} active={item} onYoutubeInteract={() => setAutoRotate(false)} />
           ))}
         </div>
       </div>
 
       <div className="mt-4 flex items-center gap-2">
         {previews.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setIndex(i)}
-            className={`h-2.5 w-2.5 rounded-full ${i === index ? "bg-white" : "bg-white/30"}`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
+          <button key={i} type="button" onClick={() => setIndex(i)} className={`cursor-pointer h-2.5 w-2.5 rounded-full ${i === index ? "bg-white" : "bg-white/30"}`} aria-label={`Go to slide ${i + 1}`} />
         ))}
       </div>
     </div>
