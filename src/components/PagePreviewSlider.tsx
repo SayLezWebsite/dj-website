@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Preview = {
   title: string;
@@ -38,21 +38,15 @@ const previews: Preview[] = [
       kind: "youtube",
       title: "YouTube preview",
       videoUrl: "https://www.youtube.com/@saylezzzz",
-      embedUrl: "https://www.youtube.com/embed/videoseries?list=UUvdodF39BFDMyfrGxpKHMbw",
+      embedUrl: "https://www.youtube-nocookie.com/embed/videoseries?list=UUvdodF39BFDMyfrGxpKHMbw&rel=0",
     },
-  },
-  {
-    title: "Shows",
-    href: "/shows",
-    description: "Upcoming + past events with lineup, flyer, and links.",
-    feature: { kind: "text", label: "Next", value: "CloseCall · Skatecafe · 27 Feb" },
   },
   {
     title: "Videos",
     href: "/videos",
     description: "Visual archive with clips and live photo moments.",
     quickLinks: [{ label: "Open video grid", href: "/videos" }],
-    feature: { kind: "text", label: "Feature", value: "Pick one clip with the Video Selector." },
+    feature: { kind: "text", label: "Feature", value: "Latest clips are listed directly on the Videos page." },
   },
   {
     title: "Presskit",
@@ -64,7 +58,7 @@ const previews: Preview[] = [
         href: "https://drive.google.com/drive/folders/1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy?usp=sharing",
       },
     ],
-    feature: { kind: "text", label: "Direct", value: "Open/download action available in Presskit." },
+    feature: { kind: "text", label: "Direct", value: "Google Drive folder preview is embedded on Presskit." },
   },
   {
     title: "Contact",
@@ -74,44 +68,13 @@ const previews: Preview[] = [
   },
 ];
 
-export default function PagePreviewSlider() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % previews.length);
-    }, 4200);
-    return () => clearInterval(id);
-  }, []);
-
-  const active = previews[index];
-
+function Slide({ active }: { active: Preview }) {
   return (
-    <div className="max-w-xl rounded-2xl border border-white/30 bg-gradient-to-b from-[#1a1f27]/85 to-[#11151b]/82 p-5 font-[var(--font-inter)] shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur-md">
-      <p className="text-xs uppercase tracking-[0.2em] text-white/60">Explore</p>
-
+    <div className="w-full shrink-0 px-1">
       <div className="mt-2 flex items-start justify-between gap-3">
-        <Link href={active.href} className="font-[var(--font-bebas)] text-5xl leading-none tracking-wide hover:opacity-85">
+        <Link href={active.href} className="cursor-pointer font-[var(--font-bebas)] text-5xl leading-none tracking-wide hover:opacity-85">
           {active.title}
         </Link>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setIndex((prev) => (prev - 1 + previews.length) % previews.length)}
-            className="rounded-full border border-white/30 px-3 py-1 text-sm text-white/90"
-            aria-label="Previous preview"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            onClick={() => setIndex((prev) => (prev + 1) % previews.length)}
-            className="rounded-full border border-white/30 px-3 py-1 text-sm text-white/90"
-            aria-label="Next preview"
-          >
-            →
-          </button>
-        </div>
       </div>
 
       <p className="mt-2 text-white/85">{active.description}</p>
@@ -149,13 +112,62 @@ export default function PagePreviewSlider() {
               href={item.href}
               target={item.href.startsWith("http") ? "_blank" : undefined}
               rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              className="rounded-full border border-white/25 px-3 py-1 text-white/90"
+              className="cursor-pointer rounded-full border border-white/25 px-3 py-1 text-white/90"
             >
               {item.label}
             </a>
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+export default function PagePreviewSlider() {
+  const [index, setIndex] = useState(0);
+
+  const total = previews.length;
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % total);
+    }, 4200);
+    return () => clearInterval(id);
+  }, [total]);
+
+  const translate = useMemo(() => `translateX(-${index * 100}%)`, [index]);
+
+  return (
+    <div className="max-w-xl rounded-2xl border border-white/30 bg-gradient-to-b from-[#1a1f27]/85 to-[#11151b]/82 p-5 font-[var(--font-inter)] shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur-md">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-xs uppercase tracking-[0.2em] text-white/60">Explore</p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setIndex((prev) => (prev - 1 + total) % total)}
+            className="rounded-full border border-white/30 px-3 py-1 text-sm text-white/90"
+            aria-label="Previous preview"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            onClick={() => setIndex((prev) => (prev + 1) % total)}
+            className="rounded-full border border-white/30 px-3 py-1 text-sm text-white/90"
+            aria-label="Next preview"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-1 overflow-hidden">
+        <div className="flex transition-transform duration-700 ease-out" style={{ transform: translate }}>
+          {previews.map((item) => (
+            <Slide key={item.title} active={item} />
+          ))}
+        </div>
+      </div>
 
       <div className="mt-4 flex items-center gap-2">
         {previews.map((_, i) => (
