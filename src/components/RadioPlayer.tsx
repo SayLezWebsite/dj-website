@@ -90,7 +90,7 @@ export default function RadioPlayer() {
     localStorage.setItem("saylez-radio-enabled", String(next));
   }
 
-  function handleEnded() {
+  function handleNext() {
     if (!playlist.length) return;
 
     if (index < playlist.length - 1) {
@@ -101,6 +101,19 @@ export default function RadioPlayer() {
     const reshuffled = shuffle(radioTracks);
     setPlaylist(reshuffled);
     setIndex(0);
+  }
+
+  function handlePrev() {
+    if (!playlist.length) return;
+    if (index > 0) {
+      setIndex((prev) => prev - 1);
+      return;
+    }
+    setIndex(playlist.length - 1);
+  }
+
+  function handleEnded() {
+    handleNext();
   }
 
   return (
@@ -127,30 +140,43 @@ export default function RadioPlayer() {
         </div>
       )}
 
-      <div className="fixed bottom-5 right-5 z-[70] flex w-64 flex-col items-end gap-2">
-        <div className="w-full rounded-md border border-white/25 bg-[#10141b]/85 px-3 py-2 text-left text-xs text-white/85 shadow-xl backdrop-blur-md">
-          <p className="text-[10px] uppercase tracking-wider text-white/60">Now playing</p>
-          <p className="truncate">{currentTrackName}</p>
-        </div>
-        <button
-          type="button"
-          onClick={handleToggle}
-          className="cursor-pointer inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/35 bg-[#10141b]/85 text-white shadow-xl backdrop-blur-md"
-          title={enabled ? "Radio on" : "Radio off"}
-          aria-label={enabled ? "Turn radio off" : "Turn radio on"}
-        >
-          {enabled ? (
-            <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true">
-              <path d="M14 3.23v2.06a7 7 0 0 1 0 13.42v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden="true">
-              <path d="M16.5 12c0-1.77-1-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zM19 12c0 .94-.2 1.82-.55 2.62l1.51 1.51A8.9 8.9 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.73 4.73c-.75.58-1.66 1.02-2.73 1.26v2.06a8.95 8.95 0 0 0 4.31-1.98L19.73 21 21 19.73 12 10.73 4.27 3z" />
-            </svg>
-          )}
-        </button>
+      <div className="fixed bottom-5 right-5 z-[70] w-72 rounded-xl border border-white/25 bg-[#10141b]/90 p-3 text-white shadow-xl backdrop-blur-md">
+        <p className="text-[10px] uppercase tracking-wider text-white/60">Now playing</p>
+        <p className="truncate text-sm text-white/90">{currentTrackName}</p>
 
-        <div className="w-24 rounded-md border border-white/25 bg-[#10141b]/85 px-2 py-1 text-white shadow-xl backdrop-blur-md">
+        <div className="mt-3 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/90 text-black"
+            aria-label="Previous track"
+            title="Previous"
+          >
+            ⏮
+          </button>
+
+          <button
+            type="button"
+            onClick={handleToggle}
+            className="cursor-pointer inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/35 bg-white text-black"
+            title={enabled ? "Pause radio" : "Play radio"}
+            aria-label={enabled ? "Pause radio" : "Play radio"}
+          >
+            {enabled ? "⏸" : "▶"}
+          </button>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            className="cursor-pointer inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/35 bg-white/90 text-black"
+            aria-label="Next track"
+            title="Next"
+          >
+            ⏭
+          </button>
+        </div>
+
+        <div className="mt-3 rounded-md border border-white/20 bg-black/20 px-2 py-2">
           <input
             type="range"
             min={0}
