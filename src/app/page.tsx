@@ -90,7 +90,7 @@ export default async function Home() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="Instagram"
           >
-            <Image src="/icons/instagram.png" alt="Instagram" width={24} height={24} className="h-6 w-6" />
+            <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} className="h-6 w-6" />
           </a>
           <a
             href="https://www.tiktok.com/@saylez__?lang=en"
@@ -100,7 +100,7 @@ export default async function Home() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="TikTok"
           >
-            <Image src="/icons/tiktok.png" alt="TikTok" width={24} height={24} className="h-6 w-6" />
+            <Image src="/icons/tiktok.svg" alt="TikTok" width={24} height={24} className="h-6 w-6" />
           </a>
           <a
             href="https://soundcloud.com/saylezam"
@@ -110,7 +110,7 @@ export default async function Home() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/35"
             title="SoundCloud"
           >
-            <Image src="/icons/soundcloud.png" alt="SoundCloud" width={24} height={24} className="h-6 w-6" />
+            <Image src="/icons/soundcloud.svg" alt="SoundCloud" width={24} height={24} className="h-6 w-6" />
           </a>
         </div>
       </div>
