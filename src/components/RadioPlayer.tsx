@@ -26,6 +26,16 @@ export default function RadioPlayer() {
   const [duration, setDuration] = useState(0);
 
   const currentTrack = useMemo(() => playlist[index], [playlist, index]);
+  const preloadQueue = useMemo(() => {
+    if (!playlist.length) return [] as string[];
+    const picks: string[] = [];
+    for (let i = 1; i <= 4; i++) {
+      const nextIdx = (index + i) % playlist.length;
+      if (playlist[nextIdx]) picks.push(playlist[nextIdx]);
+    }
+    return Array.from(new Set(picks));
+  }, [playlist, index]);
+
   const currentTrackName = useMemo(() => {
     if (!currentTrack) return "No track";
     const raw = currentTrack.split("/").pop() ?? currentTrack;
@@ -245,12 +255,16 @@ export default function RadioPlayer() {
         </div>
       </div>
 
+      {preloadQueue.map((src) => (
+        <audio key={src} src={src} preload="auto" className="hidden" aria-hidden="true" />
+      ))}
+
       <audio
         ref={audioRef}
         onEnded={handleEnded}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime || 0)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration || 0)}
-        preload="none"
+        preload="auto"
       />
     </>
   );
