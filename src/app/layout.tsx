@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import RadioPlayer from "@/components/RadioPlayer";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
           </nav>
         </header>
         <main className="pt-16">{children}</main>
+        <RadioPlayer />
       </body>
     </html>
   );
