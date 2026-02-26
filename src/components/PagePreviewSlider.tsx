@@ -3,6 +3,16 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+const musicPreviewTracks = [
+  "https://soundcloud.com/saylezam/lupita-ellaime-x-say-lez",
+  "https://soundcloud.com/saylezam/say-lez-radio-tnp-0671225",
+  "https://soundcloud.com/saylezam/nueva-bass",
+];
+
+function soundcloudEmbed(trackUrl: string) {
+  return `https://w.soundcloud.com/player/?url=${encodeURIComponent(trackUrl)}&color=%230d0f12&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=false`;
+}
+
 type Preview = {
   title: string;
   href: string;
@@ -27,8 +37,7 @@ const previews: Preview[] = [
     feature: {
       kind: "soundcloud",
       title: "SoundCloud: Latest tracks and mixes",
-      embedUrl:
-        "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/saylezam/lupita-ellaime-x-say-lez&color=%23ffffff&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=false",
+      embedUrl: "",
     },
   },
   {
@@ -128,7 +137,24 @@ function Slide({ active, onYoutubeInteract }: { active: Preview; onYoutubeIntera
 export default function PagePreviewSlider() {
   const [index, setIndex] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
-  const total = previews.length;
+  const [musicTrack, setMusicTrack] = useState(musicPreviewTracks[0]);
+
+  useEffect(() => {
+    const pick = musicPreviewTracks[Math.floor(Math.random() * musicPreviewTracks.length)] ?? musicPreviewTracks[0];
+    setMusicTrack(pick);
+  }, []);
+
+  const resolvedPreviews = useMemo(
+    () =>
+      previews.map((p) =>
+        p.title === "Music" && p.feature?.kind === "soundcloud"
+          ? { ...p, feature: { ...p.feature, embedUrl: soundcloudEmbed(musicTrack) } }
+          : p,
+      ),
+    [musicTrack],
+  );
+
+  const total = resolvedPreviews.length;
 
   useEffect(() => {
     if (!autoRotate) return;
@@ -153,14 +179,14 @@ export default function PagePreviewSlider() {
 
       <div className="mt-1 overflow-hidden">
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: translate }}>
-          {previews.map((item) => (
+          {resolvedPreviews.map((item) => (
             <Slide key={item.title} active={item} onYoutubeInteract={() => setAutoRotate(false)} />
           ))}
         </div>
       </div>
 
       <div className="mt-4 flex items-center gap-2">
-        {previews.map((_, i) => (
+        {resolvedPreviews.map((_, i) => (
           <button key={i} type="button" onClick={() => setIndex(i)} className={`cursor-pointer h-2.5 w-2.5 rounded-full ${i === index ? "bg-white" : "bg-white/30"}`} aria-label={`Go to slide ${i + 1}`} />
         ))}
       </div>
