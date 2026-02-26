@@ -69,7 +69,7 @@ const previews: Preview[] = [
     href: "/presskit",
     description: "Booking details and downloadable press material.",
     quickLinks: [{ label: "Open Presskit", href: "https://drive.google.com/drive/folders/1JnLIiZtqw5vBTM56z7u8yawbsQ8uGzFy?usp=sharing" }],
-    feature: { kind: "text", label: "Direct", value: "Google Drive folder preview is embedded on Presskit." },
+    feature: { kind: "text", label: "Direct", value: "Click here for presskit" },
   },
   {
     title: "Contact",
@@ -113,10 +113,9 @@ function Slide({ active, onMediaInteract }: { active: Preview; onMediaInteract: 
       )}
 
       {active.feature?.kind === "video" && (
-        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35">
+        <a href="/videos" className="mt-3 block overflow-hidden rounded-lg border border-white/20 bg-black/35 cursor-pointer">
           <video src={active.feature.src} className="h-24 w-full object-cover md:h-28" autoPlay muted loop playsInline preload="metadata" />
-          <p className="px-3 py-2 text-sm text-white/85">Videos preview</p>
-        </div>
+        </a>
       )}
 
       {active.feature?.kind === "contact" && (
