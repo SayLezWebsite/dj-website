@@ -49,8 +49,8 @@ export default async function Home() {
       <HeroMediaRotator items={heroMedia} />
       <div className="absolute inset-0 bg-[#0d0f12]/45" />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl flex-col items-center justify-start px-6 pb-16 pt-28 text-center md:pt-36">
-        <p className="max-w-4xl font-[var(--font-inter)] text-base leading-relaxed text-white/92 md:text-xl">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl flex-col items-center justify-start px-6 pb-16 pt-20 text-center md:pt-24">
+        <p className="mb-10 mt-8 max-w-4xl font-[var(--font-inter)] text-base leading-relaxed text-white/92 md:text-xl">
           Say Lez is a DJ/producer based in Amsterdam, focused on Garage with a serious love for
           R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
           always rooted in feeling.
