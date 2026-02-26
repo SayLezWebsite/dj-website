@@ -104,7 +104,7 @@ export default function RadioPlayer() {
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 px-4">
           <div className="w-full max-w-lg rounded-2xl border border-white/25 bg-[#11151b]/95 p-6 text-white shadow-2xl">
             <p className="font-[var(--font-bebas)] text-4xl tracking-wide">Say Lez Radio</p>
-            <p className="mt-2 font-[var(--font-inter)] text-lg">Do you want to view the site with radio on?</p>
+            <p className="mt-2 font-[var(--font-inter)] text-lg">View site with audio?</p>
 
             <div className="mt-5 flex gap-3">
               <button type="button" onClick={() => handleChoice(true)} className="rounded-lg border border-white/40 px-5 py-2 font-[var(--font-inter)] font-semibold">
@@ -115,8 +115,8 @@ export default function RadioPlayer() {
               </button>
             </div>
 
-            <p className="mt-4 text-sm text-white/75">
-              You can view the site with or without sound. Regarding your choice, the main page will load with Say Lez Radio on or off.
+            <p className="mt-4 text-sm italic text-white/75">
+              You can view the site with or without sound. Depending on your choice, the main page will load with radio on or off.
             </p>
           </div>
         </div>
