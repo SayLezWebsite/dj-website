@@ -91,7 +91,12 @@ function Slide({ active, onMediaInteract }: { active: Preview; onMediaInteract: 
       <p className="mt-1 text-sm text-white/85">{active.description}</p>
 
       {active.feature?.kind === "youtube" && (
-        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35" onMouseDown={onMediaInteract} onTouchStart={onMediaInteract}>
+        <div
+          className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35"
+          onMouseDown={onMediaInteract}
+          onTouchStart={onMediaInteract}
+          onMouseEnter={onMediaInteract}
+        >
           <iframe
             title={active.feature.title}
             src={active.feature.embedUrl}
@@ -106,7 +111,12 @@ function Slide({ active, onMediaInteract }: { active: Preview; onMediaInteract: 
       )}
 
       {active.feature?.kind === "soundcloud" && (
-        <div className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35" onMouseDown={onMediaInteract} onTouchStart={onMediaInteract}>
+        <div
+          className="mt-3 overflow-hidden rounded-lg border border-white/20 bg-black/35"
+          onMouseDown={onMediaInteract}
+          onTouchStart={onMediaInteract}
+          onMouseEnter={onMediaInteract}
+        >
           <iframe title={active.feature.title} width="100%" height="110" allow="autoplay" src={active.feature.embedUrl} />
           <p className="px-3 py-2 text-sm text-white/85">SoundCloud: Latest tracks and mixes</p>
         </div>
