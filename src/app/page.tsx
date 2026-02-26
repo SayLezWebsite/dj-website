@@ -97,9 +97,11 @@ export default async function Home() {
               )}
             </div>
             <div>
-              <p className="text-sm text-white md:text-base">{nextShow?.name} — {nextShow?.venue}</p>
-              <p className="text-xs text-white/85 md:text-sm">{nextShow?.date}</p>
-              <p className="mt-1 text-xs text-white/80 md:text-sm">Artists: {nextShow?.lineup.join(" · ")}</p>
+              <a href={nextShow?.eventUrl || "/shows"} target="_blank" rel="noreferrer" className="block cursor-pointer">
+                <p className="text-sm text-white md:text-base underline-offset-2 hover:underline">{nextShow?.name} — {nextShow?.venue}</p>
+                <p className="text-xs text-white/85 md:text-sm">{nextShow?.date}</p>
+                <p className="mt-1 text-xs text-white/80 md:text-sm">Artists: {nextShow?.lineup.join(" · ")}</p>
+              </a>
               <Link href="/shows" className="mt-1 inline-block underline text-white/90 text-sm">
                 View all dates
               </Link>
