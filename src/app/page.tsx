@@ -18,17 +18,32 @@ async function getHeroMedia(): Promise<MediaItem[]> {
   const photoFiles = await fs.readdir(photosDir).catch(() => []);
   const videoFiles = await fs.readdir(videosDir).catch(() => []);
 
-  const photos = photoFiles
-    .filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-    .slice(-10)
-    .map((f) => ({ type: "photo" as const, src: `/photos/${f}` }));
+  const photoCandidates = photoFiles.filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f));
+  const videoCandidates = videoFiles.filter((f) => /\.(mp4|mov|webm|m4v)$/i.test(f));
 
-  const videos = videoFiles
-    .filter((f) => /\.(mp4|mov|webm|m4v)$/i.test(f))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-    .slice(-8)
-    .map((f) => ({ type: "video" as const, src: `/videos/${f}` }));
+  const photosByMtime = await Promise.all(
+    photoCandidates.map(async (f) => ({
+      file: f,
+      mtime: (await fs.stat(path.join(photosDir, f))).mtimeMs,
+    })),
+  );
+
+  const videosByMtime = await Promise.all(
+    videoCandidates.map(async (f) => ({
+      file: f,
+      mtime: (await fs.stat(path.join(videosDir, f))).mtimeMs,
+    })),
+  );
+
+  const photos = photosByMtime
+    .sort((a, b) => b.mtime - a.mtime)
+    .slice(0, 10)
+    .map((x) => ({ type: "photo" as const, src: `/photos/${x.file}` }));
+
+  const videos = videosByMtime
+    .sort((a, b) => b.mtime - a.mtime)
+    .slice(0, 8)
+    .map((x) => ({ type: "video" as const, src: `/videos/${x.file}` }));
 
   const mixed: MediaItem[] = [];
   const max = Math.max(photos.length, videos.length);
