@@ -205,7 +205,16 @@ export default function PagePreviewSlider() {
       <div className="mt-1 overflow-hidden">
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: translate }}>
           {resolvedPreviews.map((item) => (
-            <Slide key={item.title} active={item} onMediaInteract={() => setAutoRotate(false)} />
+            <Slide
+              key={item.title}
+              active={item}
+              onMediaInteract={() => {
+                setAutoRotate(false);
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("external-media-play"));
+                }
+              }}
+            />
           ))}
         </div>
       </div>

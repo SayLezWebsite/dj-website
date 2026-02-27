@@ -5,18 +5,21 @@ import path from "node:path";
 const socials = [
   {
     name: "Instagram",
+    icon: "IG",
     handle: "@say.lez_",
     url: "https://www.instagram.com/say.lez_/",
     note: "Photo/video drops, event updates, clips",
   },
   {
     name: "TikTok",
+    icon: "TT",
     handle: "@saylez__",
     url: "https://www.tiktok.com/@saylez__?lang=en",
     note: "Short edits, crowd moments, previews",
   },
   {
     name: "YouTube",
+    icon: "YT",
     handle: "@saylezzzz",
     url: "https://www.youtube.com/@saylezzzz",
     note: "Longer sets, edits, and uploads",
@@ -88,7 +91,7 @@ export default async function SocialPage() {
             rel="noreferrer"
             className="group border border-white/20 bg-white/[0.03] p-5 transition hover:border-white"
           >
-            <p className="font-[var(--font-bebas)] text-3xl tracking-wide">{social.name}</p>
+            <p className="font-[var(--font-bebas)] text-3xl tracking-wide inline-flex items-center gap-2"><span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/40 text-xs">{social.icon}</span>{social.name}</p>
             <p className="mt-1 font-[var(--font-inter)] text-white/90">{social.handle}</p>
             <p className="mt-3 font-[var(--font-inter)] text-sm text-white/70">{social.note}</p>
             <p className="mt-4 font-[var(--font-inter)] text-sm underline">Open profile</p>

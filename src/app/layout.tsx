@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Bebas_Neue, Inter, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import RadioPlayer from "@/components/RadioPlayer";
@@ -15,6 +15,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
+
 export const metadata: Metadata = {
   title: "Say Lez",
   description: "Say Lez — DJ/Producer",
@@ -27,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bebas.variable} ${inter.variable} antialiased`}>
+      <body className={`${bebas.variable} ${inter.variable} ${playfair.variable} antialiased`}>
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/20 bg-[#0c111a]/85 shadow-[0_8px_30px_rgba(0,0,0,0.45)] backdrop-blur-md">
           <nav className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2 md:flex-row md:items-center md:justify-between md:py-3">
             <Link href="/" className="font-[var(--font-bebas)] text-2xl tracking-widest md:text-3xl">

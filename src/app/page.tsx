@@ -76,7 +76,7 @@ export default async function Home() {
       <div className="absolute inset-0 bg-[#0d0f12]/45" />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-96px)] max-w-6xl flex-col items-center justify-center px-4 py-5 text-center md:h-[calc(100vh-64px)] md:px-5 md:py-4">
-        <p className="mb-4 max-w-4xl px-1 font-[var(--font-inter)] text-xs leading-relaxed text-white/92 sm:text-sm md:mb-5 md:text-lg">
+        <p className="mb-4 max-w-4xl px-1 font-[var(--font-playfair)] text-sm leading-relaxed text-white/92 sm:text-base md:mb-5 md:text-xl">
           Say Lez is a DJ/producer based in Amsterdam, focused on Garage with a serious love for
           R&amp;B, Soul and sampling. His sets and tracks lean into swing, warmth and emotion,
           always rooted in feeling.
